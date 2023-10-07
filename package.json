@@ -6,9 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "lint": "npm run lint:eslint && npm run lint:tsc",
-    "lint:eslint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "lint:tsc": "tsc --noEmit",
+    "lint": "eslint . --ext ts,tsx,js,jsx",
+    "typecheck": "tsc",
     "preview": "vite preview",
     "prepare": "husky install"
   },
@@ -22,21 +21,22 @@
     "@typescript-eslint/eslint-plugin": "^5.59.8",
     "@typescript-eslint/parser": "^5.59.8",
     "@vitejs/plugin-react": "^4.0.0",
-    "eslint": "^8.41.0",
-    "eslint-config-prettier": "^8.8.0",
+    "eslint": "^8.51.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.3.4",
     "husky": "^8.0.0",
     "lint-staged": "^13.2.2",
-    "prettier": "2.8.8",
-    "typescript": "^5.0.4",
+    "prettier": "^3.0.3",
+    "typescript": "^5.2.2",
     "vite": "^4.3.9"
   },
   "lint-staged": {
-    "*.{ts,tsx,js,jsx}": [
-      "bash -c 'npm run lint:tsc'",
-      "npm run lint:eslint -- --quiet --fix",
-      "prettier --write --ignore-unknown"
+    "*.{ts,tsx}": [
+      "bash -c 'npm run typecheck'",
+      "npm run lint -- --fix"
     ]
   }
 }
